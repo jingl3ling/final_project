@@ -60,7 +60,8 @@ def camera_positions_from_poses(poses: List[np.ndarray]) -> np.ndarray:
 
 
 class KittiSequence:
-    """One KITTI odometry sequence: left color images, K, and optional GT poses."""
+    """One KITTI odometry sequence: PNGs, intrinsics from calib.txt (e.g. P2: + image_2 or P0: + image_0), optional GT poses."""
+
 
     def __init__(
         self,

@@ -25,10 +25,27 @@ def main() -> None:
     p.add_argument("--seq", type=str, default="00", help="Sequence id, e.g. 00")
     p.add_argument("--max-frames", type=int, default=200, help="Limit frames for a quick run")
     p.add_argument("--out", type=Path, default=Path("outputs/kitti_traj.png"))
+    p.add_argument(
+        "--image-dir",
+        type=str,
+        default="image_2",
+        help="Image subfolder under sequences/XX (image_2=color left, image_0=gray left)",
+    )
+    p.add_argument(
+        "--calib-key",
+        type=str,
+        default="P2:",
+        help="calib.txt line prefix for intrinsics (P2: with color image_2, P0: with gray image_0)",
+    )
     args = p.parse_args()
 
     seq_root, poses_path = default_kitti_layout(args.dataset, args.seq, train_poses=True)
-    kitti = KittiSequence(seq_root, poses_path)
+    kitti = KittiSequence(
+        seq_root,
+        poses_path,
+        image_dir_name=args.image_dir,
+        calib_key=args.calib_key,
+    )
     if not kitti.gt_poses:
         raise SystemExit("No ground-truth poses found; check --dataset and --seq")
 

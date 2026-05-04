@@ -1,5 +1,7 @@
 # Final Project — Visual SLAM (Project 2)
 
+Part 1 result in outputs
+
 Monorepo for **Task 1** (Python VO / VSLAM on KITTI + synthetic demo), **Task 2** (StellaVSLAM workflow + calibration template), and **Task 3** (ROS 2 overlay launches + Nav2 tutorial).
 
 ## Repository layout
@@ -25,9 +27,25 @@ export PYTHONPATH="$(pwd)"
 
 ### KITTI odometry CLI (after downloading the dataset)
 
+`--dataset` must be the folder that **directly** contains `sequences/` and `poses/` (often `.../dataset` after unzipping).
+
+**Color** (default: `image_2` + `P2:`):
+
 ```bash
 export PYTHONPATH="$(pwd)"
-.venv/bin/python task1_kitti/run_kitti.py --dataset /path/to/kitti_odometry --seq 00 --max-frames 200
+.venv/bin/python task1_kitti/run_kitti.py --dataset /path/to/kitti_odometry/dataset --seq 00 --max-frames 200
+```
+
+**Grayscale** odometry (`image_0` + `P0:` in `calib.txt`):
+
+```bash
+export PYTHONPATH="$(pwd)"
+.venv/bin/python task1_kitti/run_kitti.py \
+  --dataset /path/to/kitti_odometry/dataset \
+  --seq 00 \
+  --max-frames 200 \
+  --image-dir image_0 \
+  --calib-key "P0:"
 ```
 
 ### Notebook (re-)execution

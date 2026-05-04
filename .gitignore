@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+outputs/
+*.msg
+*.bag
+*.db3
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+.DS_Store

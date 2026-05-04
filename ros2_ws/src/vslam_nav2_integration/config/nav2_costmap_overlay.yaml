@@ -1,0 +1,17 @@
+# Reference fragment for Nav2 costmap configuration when combining sources:
+# - Visual SLAM (StellaVSLAM) for global pose / loop closures (TF map -> odom)
+# - 2D laser or depth-derived obstacles for rolling occupancy (local + global costmaps)
+#
+# Copy relevant sections into your robot Nav2 parameter YAML, or compose with
+# `nav2_bringup` + TurtleBot3/4 parameter files from your simulation stack.
+#
+# Typical layers:
+#   global_costmap:
+#     ros__parameters:
+#       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+#   local_costmap:
+#     ros__parameters:
+#       plugins: ["voxel_layer", "inflation_layer"]
+#
+# For slam_toolbox producing /map while Stella publishes TF, document topic
+# remaps and frame_ids in docs/nav2_stella_tutorial.md.
